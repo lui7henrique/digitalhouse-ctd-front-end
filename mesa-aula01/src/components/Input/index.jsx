@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useForm } from "../../context/contextoFormulario";
 
 const Input = ({ name, label, type = "text" }) => {
-  const { setFormState } = useForm();
-  const [value, setValue] = useState("");
+  const { dispatch, formState } = useForm();
+  const [value, setValue] = useState(formState[name]);
 
   const onChange = (e) => {
     setValue(e.target.value);
@@ -12,9 +12,11 @@ const Input = ({ name, label, type = "text" }) => {
   const onBlur = (e) => {
     e.preventDefault();
 
-    setFormState((prevFormState) => {
-      return { ...prevFormState, [name]: value };
-    });
+    const dispatchType = name.includes("pokemon")
+      ? "ATUALIZAR_POKEMON"
+      : "ATUALIZAR_TREINADOR";
+
+    dispatch({ type: dispatchType, name, value: value });
   };
 
   return (

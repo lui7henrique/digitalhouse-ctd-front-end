@@ -27,6 +27,9 @@ const Detalhe = () => {
 
         <div className="lista">
           <p>Nome: {formState.nomePokemon}</p>
+          <p>Elemento: {formState.elementoPokemon}</p>
+          <p>Altura: {formState.alturaPokemon}</p>
+          <p>Idade: {formState.idadePokemon}</p>
         </div>
       </section>
 

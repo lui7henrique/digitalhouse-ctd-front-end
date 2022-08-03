@@ -23,6 +23,7 @@ const Formulario = () => {
           Inicio
         </Link>
       </header>
+
       <div className="formulario-entrada">
         <h3>Solicitação de atenção</h3>
         <p>
@@ -52,6 +53,9 @@ const Formulario = () => {
               </p>
 
               <Input name="nomePokemon" label="Nome" />
+              <Input name="elementoPokemon" label="Elemento" />
+              <Input name="alturaPokemon" label="Altura" />
+              <Input name="idadePokemon" label="Idade" type="number" />
             </div>
           </div>
           <Detalhe />
