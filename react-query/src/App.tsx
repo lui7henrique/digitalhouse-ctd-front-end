@@ -1,20 +1,42 @@
-import { useState } from "react";
-import { useInfiniteQuery } from "react-query";
+import { useEffect, useState } from "react";
 import { useFetch } from "./hooks/useFetch";
+import { GetCharacter } from "./types/character";
 
 function App() {
-  const { data, error, isLoading } = useFetch(["character"], `/type`);
+  const [page, setPage] = useState(1);
+
+  const { isLoading, error, data, isPreviousData } = useFetch<GetCharacter>(
+    ["character", page],
+    `/character`,
+    {
+      params: {
+        page: page,
+      },
+    }
+  );
 
   if (isLoading) {
-    return <h1>loading...</h1>;
+    return (
+      <div style={{ maxWidth: "1180px", margin: "0 auto" }}>
+        <h1>loading...</h1>
+      </div>
+    );
   }
 
   if (error) {
-    return <h1>error on fetch data</h1>;
+    return (
+      <div style={{ maxWidth: "1180px", margin: "0 auto" }}>
+        <h1>error on fetch data</h1>;
+      </div>
+    );
   }
 
   if (!data) {
-    return <h1>no data =(</h1>;
+    return (
+      <div style={{ maxWidth: "1180px", margin: "0 auto" }}>
+        <h1>no data =(</h1>;
+      </div>
+    );
   }
 
   return (
@@ -38,6 +60,17 @@ function App() {
           );
         })}
       </div>
+
+      <button onClick={() => setPage((old) => old - 1)} disabled={page === 1}>
+        Previous Page
+      </button>
+
+      <button
+        onClick={() => setPage((old) => old + 1)}
+        disabled={isPreviousData || !data?.info.next}
+      >
+        Next Page
+      </button>
     </div>
   );
 }
