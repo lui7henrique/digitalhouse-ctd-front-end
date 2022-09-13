@@ -1,6 +1,6 @@
-import Paginacao from "componentes/paginacao/paginacao.componente";
-import Filtros from "componentes/personagens/filtros.componente";
-import GradePersonagens from "componentes/personagens/grade-personagens.componente";
+import { CharactersFilters } from "components/CharactersFilters";
+import { CharactersGrid } from "components/CharactersGrid";
+import { Pagination } from "components/Pagination";
 
 /**
  * Esta é a página principal. Aqui você deve ver o painel de filtro junto com a grade de personagens.
@@ -18,10 +18,11 @@ export const Home = () => {
         <h3>Catálogo de Personagens</h3>
         <button className="danger">Test Button</button>
       </div>
-      <Filtros />
-      <Paginacao />
-      <GradePersonagens />
-      <Paginacao />
+
+      <CharactersFilters />
+      <Pagination />
+      <CharactersGrid />
+      <Pagination />
     </div>
   );
 };

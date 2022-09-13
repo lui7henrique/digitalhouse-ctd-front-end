@@ -1,5 +1,5 @@
-import BotaoFavorito from "componentes/botoes/botao-favorito.componente";
-import CardEpisodio from "componentes/episodios/card-episodio.componente";
+import { EpisodeCard } from "components/EpisodeCard";
+import { FavoriteButton } from "components/FavoriteButton";
 import "./styles.css";
 
 /**
@@ -30,15 +30,16 @@ export const Detail = () => {
             <p>Planeta: Earth</p>
             <p>Genero: Male</p>
           </div>
-          <BotaoFavorito isFavorito={false} onClick={() => {}} />
+
+          <FavoriteButton isFavorite={false} />
         </div>
       </div>
       <h4>Lista de episódios em que o personagem apareceu</h4>
 
       <div className={"episodios-grade"}>
-        <CardEpisodio />
-        <CardEpisodio />
-        <CardEpisodio />
+        <EpisodeCard />
+        <EpisodeCard />
+        <EpisodeCard />
       </div>
     </div>
   );

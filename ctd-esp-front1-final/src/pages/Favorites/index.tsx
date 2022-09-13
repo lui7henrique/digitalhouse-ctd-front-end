@@ -1,4 +1,4 @@
-import GradePersonagens from "../../componentes/personagens/grade-personagens.componente";
+import { CharactersGrid } from "components/CharactersGrid";
 
 /**
  * Esta é a página de favoritos. Aqui você deve ver todos os personagens marcados como favoritos
@@ -16,7 +16,8 @@ export const Favorites = () => {
         <h3>Personagens Favoritos</h3>
         <button className="danger">Test Button</button>
       </div>
-      <GradePersonagens />
+
+      <CharactersGrid />
     </div>
   );
 };
