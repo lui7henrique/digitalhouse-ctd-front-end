@@ -7,17 +7,22 @@ import { Home } from "pages/Home";
 import { Favorites } from "pages/Favorites";
 import { Detail } from "pages/Detail";
 
+import { Provider } from "react-redux";
+import { store } from "config/store";
+
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <Provider store={store}>
+      <div className="App">
+        <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="favoritos" element={<Favorites />} />
-        <Route path="detalhe" element={<Detail />} />
-      </Routes>
-    </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="favoritos" element={<Favorites />} />
+          <Route path="detalhe" element={<Detail />} />
+        </Routes>
+      </div>
+    </Provider>
   );
 }
 

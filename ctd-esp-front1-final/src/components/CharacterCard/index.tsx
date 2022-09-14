@@ -1,4 +1,5 @@
 import { FavoriteButton } from "components/FavoriteButton";
+import { Character } from "types/characters";
 import "./styles.css";
 
 /**
@@ -10,15 +11,20 @@ import "./styles.css";
  * @returns {JSX.Element}
  */
 
-export const CharacterCard = () => {
+type CharacterProps = {
+  character: Character;
+};
+
+export const CharacterCard = (props: CharacterProps) => {
+  const { character } = props;
+
   return (
     <div className="card-personagem">
-      <img
-        src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-        alt="Rick Sanchez"
-      />
+      <img src={character.image} alt="Rick Sanchez" />
+
       <div className="card-personagem-body">
-        <span>Rick Sanchez</span>
+        <span>{character.name}</span>
+
         <FavoriteButton isFavorite={false} />
       </div>
     </div>
