@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import "./App.css";
+import { Provider } from "react-redux";
 
 import { Header } from "./components/Header";
 
@@ -7,8 +7,9 @@ import { Home } from "pages/Home";
 import { Favorites } from "pages/Favorites";
 import { Detail } from "pages/Detail";
 
-import { Provider } from "react-redux";
-import { store } from "config/store";
+import { store } from "store";
+
+import "./App.css";
 
 function App() {
   return (

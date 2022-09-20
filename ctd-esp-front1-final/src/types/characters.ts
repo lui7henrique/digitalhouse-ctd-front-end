@@ -27,7 +27,7 @@ export interface Character {
   image: string;
   episode: string[];
   url: string;
-  created: Date;
+  created: string;
 }
 
 export interface GetCharacters {

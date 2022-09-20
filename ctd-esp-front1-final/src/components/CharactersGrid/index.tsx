@@ -1,8 +1,10 @@
 import { CharacterCard } from "components/CharacterCard";
-import { IRootState } from "config/store";
-import { State } from "config/store/types";
-import { useStore } from "react-redux";
-import { GetCharacters } from "types/characters";
+
+import { useEffect } from "react";
+import { connect, useSelector, useStore } from "react-redux";
+import { IState } from "store";
+import { CharactersState } from "store/modules/characters/types";
+
 import "./styles.css";
 
 /**
@@ -15,15 +17,28 @@ import "./styles.css";
  */
 
 export const CharactersGrid = () => {
-  const { getState } = useStore<IRootState>();
-  const state = getState();
+  const characters = useSelector<IState, CharactersState>(
+    (state) => state.characters
+  );
 
-  const data = (state.characters as State).data;
+  // useEffect(() => {
+  //   const fetch = async () => {
+  //     await getInitialCharacters(store.dispatch);
+  //   };
 
-  if (data) {
+  //   fetch();
+  // }, [store.dispatch]);
+
+  // const { data, isLoading } = characters;
+
+  if (characters.isLoading) {
+    return <h1>loading...</h1>;
+  }
+
+  if (characters.items) {
     return (
       <div className="grade-personagens">
-        {data.results.map((character) => {
+        {characters.items.map((character) => {
           return <CharacterCard character={character} />;
         })}
       </div>
