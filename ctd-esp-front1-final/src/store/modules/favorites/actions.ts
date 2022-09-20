@@ -1,7 +1,7 @@
-import { Action } from "store";
+import { FavoritesAction } from "store";
 import { Character } from "types/characters";
 
-export const favoriteCharacter = (character: Character): Action => {
+export const favoriteCharacter = (character: Character): FavoritesAction => {
   return {
     type: "FAVORITE_CHARACTER",
     payload: {
@@ -10,7 +10,7 @@ export const favoriteCharacter = (character: Character): Action => {
   };
 };
 
-export const disFavorCharacter = (character: Character): Action => {
+export const disFavorCharacter = (character: Character): FavoritesAction => {
   return {
     type: "DISFAVOR_CHARACTER",
     payload: {

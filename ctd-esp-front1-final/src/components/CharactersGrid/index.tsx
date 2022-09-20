@@ -3,6 +3,7 @@ import { CharacterCard } from "components/CharacterCard";
 import { useEffect } from "react";
 import { connect, useSelector, useStore } from "react-redux";
 import { IState } from "store";
+import { fetchInitialCharacters } from "store/modules/characters/actions";
 import { CharactersState } from "store/modules/characters/types";
 
 import "./styles.css";
@@ -21,15 +22,15 @@ export const CharactersGrid = () => {
     (state) => state.characters
   );
 
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     await getInitialCharacters(store.dispatch);
-  //   };
+  const { dispatch } = useStore();
 
-  //   fetch();
-  // }, [store.dispatch]);
+  useEffect(() => {
+    const fetch = async () => {
+      await fetchInitialCharacters(dispatch);
+    };
 
-  // const { data, isLoading } = characters;
+    fetch();
+  }, [dispatch]);
 
   if (characters.isLoading) {
     return <h1>loading...</h1>;

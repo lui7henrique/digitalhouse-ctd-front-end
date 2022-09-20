@@ -5,13 +5,21 @@ import { CharactersState } from "./modules/characters/types";
 import { FavoritesState } from "./modules/favorites/types";
 import { Character } from "types/characters";
 
-export type ActionType = "FAVORITE_CHARACTER" | "DISFAVOR_CHARACTER";
+export type FavoritesActionType = "FAVORITE_CHARACTER" | "DISFAVOR_CHARACTER";
+export type CharactersActionType = "CHANGE_CHARACTERS";
 
 export type Action = {
-  type: ActionType;
   payload?: {
     character?: Character;
   };
+};
+
+export type FavoritesAction = Action & {
+  type: FavoritesActionType;
+};
+
+export type CharactersAction = Action & {
+  type: CharactersActionType;
 };
 
 export interface IState {

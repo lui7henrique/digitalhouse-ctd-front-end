@@ -1,5 +1,5 @@
 import { Reducer } from "@reduxjs/toolkit";
-import { Action, ActionType } from "store";
+import { FavoritesAction, FavoritesActionType } from "store";
 import { FavoritesState } from "./types";
 
 const INITIAL_STATE: FavoritesState = {
@@ -9,11 +9,11 @@ const INITIAL_STATE: FavoritesState = {
 
 export const favorites: Reducer<FavoritesState> = (
   state: FavoritesState,
-  action: Action
+  action: FavoritesAction
 ) => {
   const { payload, type } = action;
 
-  const actions: Record<ActionType, () => FavoritesState> = {
+  const actions: Record<FavoritesActionType, () => FavoritesState> = {
     DISFAVOR_CHARACTER: () => {
       const newState = {
         ...state,

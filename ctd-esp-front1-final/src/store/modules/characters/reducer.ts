@@ -1,6 +1,6 @@
 import { CharactersState } from "./types";
 import { Reducer } from "@reduxjs/toolkit";
-import { Action } from "store";
+import { CharactersAction } from "store";
 
 const fakeData = [
   {
@@ -154,6 +154,9 @@ const INITIAL_STATE: CharactersState = {
   isLoading: false,
 };
 
-export const characters: Reducer<CharactersState> = (state, action: Action) => {
+export const characters: Reducer<CharactersState> = (
+  state,
+  action: CharactersAction
+) => {
   return INITIAL_STATE;
 };
