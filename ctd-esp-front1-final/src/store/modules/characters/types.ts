@@ -5,5 +5,6 @@ export type CharactersState =
       data?: GetCharacters | null;
       favorites?: Character[] | null;
       isLoading: boolean;
+      search?: string;
     }
   | undefined;

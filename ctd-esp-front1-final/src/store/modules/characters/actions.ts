@@ -15,6 +15,25 @@ export const fetchInitialCharacters = async (dispatch: Dispatch<Action>) => {
   });
 };
 
+export const handleSearchByName = async (
+  search: string,
+  dispatch: Dispatch<Action>
+) => {
+  const { data } = await api.get("/character", {
+    params: {
+      name: search,
+    },
+  });
+
+  dispatch({
+    type: "CHANGE_DATA",
+    payload: {
+      data,
+      search,
+    },
+  });
+};
+
 export const handlePreviousPage = async (
   dispatch: Dispatch<Action>,
   state: CharactersState
@@ -41,10 +60,12 @@ export const handleNextPage = async (
 ) => {
   const next = state?.data?.info.next;
   const page = next?.split("=")[1];
+  const name = state?.search ?? "";
 
   const { data } = await api.get("/character", {
     params: {
       page,
+      name,
     },
   });
 
@@ -60,6 +81,7 @@ export const CHANGE_DATA = (state: CharactersState, action: Action) => {
   const newState: CharactersState = {
     ...state,
     isLoading: false,
+    search: action.payload?.search,
     data: action.payload?.data || null,
   };
 

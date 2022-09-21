@@ -13,6 +13,7 @@ export type Action = {
   payload?: {
     data?: GetCharacters;
     character?: Character;
+    search?: string;
   };
   type: CharactersActionType;
 };
