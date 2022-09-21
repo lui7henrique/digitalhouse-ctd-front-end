@@ -1,6 +1,9 @@
-import { Character } from "types/characters";
+import { Character, GetCharacters } from "types/characters";
 
-export type CharactersState = {
-  items: Character[];
-  isLoading: boolean;
-};
+export type CharactersState =
+  | {
+      data?: GetCharacters | null;
+      favorites?: Character[] | null;
+      isLoading: boolean;
+    }
+  | undefined;

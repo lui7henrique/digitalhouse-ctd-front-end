@@ -1,17 +1,14 @@
 import { FavoriteButton } from "components/FavoriteButton";
-import { useSelector, useStore } from "react-redux";
+import { useSelector } from "react-redux";
 import { useMemo } from "react";
-import { IState } from "store";
+
+import { useAppDispatch } from "hooks";
+
+import { CharactersState } from "store/modules/characters/types";
 
 import { Character } from "types/characters";
-
-import { FavoritesState } from "store/modules/favorites/types";
-
 import "./styles.css";
-import {
-  disFavorCharacter,
-  favoriteCharacter,
-} from "store/modules/favorites/actions";
+import { IState } from "store";
 
 /**
  * Card para cada personagem dentro da grade de personagem.
@@ -29,16 +26,19 @@ type CharacterProps = {
 export const CharacterCard = (props: CharacterProps) => {
   const { character } = props;
 
-  const { dispatch } = useStore();
-  const favorites = useSelector<IState, FavoritesState>(
-    (state) => state.favorites
+  const dispatch = useAppDispatch();
+
+  const characters = useSelector<IState, CharactersState>(
+    (state) => state.characters
   );
 
   const isFavorite = useMemo(() => {
-    const hasInArray = favorites?.items.find(({ id }) => id === character.id);
+    const hasInArray = characters?.favorites?.find(
+      ({ id }) => id === character.id
+    );
 
     return !!hasInArray;
-  }, [character, favorites]);
+  }, [character, characters]);
 
   return (
     <div className="card-personagem">
@@ -49,13 +49,21 @@ export const CharacterCard = (props: CharacterProps) => {
 
         <FavoriteButton
           isFavorite={isFavorite}
-          onClick={() =>
-            dispatch(
-              isFavorite
-                ? disFavorCharacter(character)
-                : favoriteCharacter(character)
-            )
-          }
+          onClick={() => {
+            isFavorite
+              ? dispatch({
+                  type: "DISFAVOR_CHARACTER",
+                  payload: {
+                    character,
+                  },
+                })
+              : dispatch({
+                  type: "FAVORITE_CHARACTER",
+                  payload: {
+                    character,
+                  },
+                });
+          }}
         />
       </div>
     </div>

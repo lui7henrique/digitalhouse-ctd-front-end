@@ -1,7 +1,7 @@
 import { CharacterCard } from "components/CharacterCard";
 
 import { useEffect } from "react";
-import { connect, useSelector, useStore } from "react-redux";
+import { useSelector, useStore } from "react-redux";
 import { IState } from "store";
 import { fetchInitialCharacters } from "store/modules/characters/actions";
 import { CharactersState } from "store/modules/characters/types";
@@ -32,14 +32,16 @@ export const CharactersGrid = () => {
     fetch();
   }, [dispatch]);
 
-  if (characters.isLoading) {
+  if (characters?.isLoading) {
     return <h1>loading...</h1>;
   }
 
-  if (characters.items) {
+  if (characters?.data?.results) {
+    const { data } = characters;
+
     return (
       <div className="grade-personagens">
-        {characters.items.map((character) => {
+        {data.results.map((character) => {
           return <CharacterCard character={character} />;
         })}
       </div>

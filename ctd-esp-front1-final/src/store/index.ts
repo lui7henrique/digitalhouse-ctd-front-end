@@ -2,31 +2,27 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "./modules/rootReducer";
 
 import { CharactersState } from "./modules/characters/types";
-import { FavoritesState } from "./modules/favorites/types";
-import { Character } from "types/characters";
+import { Character, GetCharacters } from "types/characters";
 
-export type FavoritesActionType = "FAVORITE_CHARACTER" | "DISFAVOR_CHARACTER";
-export type CharactersActionType = "CHANGE_CHARACTERS";
+export type CharactersActionType =
+  | "CHANGE_DATA"
+  | "FAVORITE_CHARACTER"
+  | "DISFAVOR_CHARACTER";
 
 export type Action = {
   payload?: {
+    data?: GetCharacters;
     character?: Character;
   };
-};
-
-export type FavoritesAction = Action & {
-  type: FavoritesActionType;
-};
-
-export type CharactersAction = Action & {
   type: CharactersActionType;
 };
 
 export interface IState {
   characters: CharactersState;
-  favorites: FavoritesState;
 }
 
 export const store = configureStore({
   reducer: combineReducers,
 });
+
+export type AppDispatch = typeof store.dispatch;
